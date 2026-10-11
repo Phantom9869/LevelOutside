@@ -16,7 +16,7 @@ KNOWN_SCENE_NOUNS = {
     "tree", "bench", "fence", "wall", "puddle", "slide", "swing", "rock",
     "stone", "stick", "leaf", "grass", "flower", "bush", "sand", "path",
     "gate", "building", "car", "hill", "playground", "statue", "fountain",
-    "bin", "lamp", "bird", "cloud", "shadow", "pebble", "log", "soil", "mud",
+    "bin", "lamp", "cloud", "shadow", "pebble", "log", "soil", "mud",
 }
 
 # Conservative heuristics. Tune per age band if you wish.
@@ -67,6 +67,10 @@ _RAW_DENY = {
     ),
     "dark_or_lost": r"\b(after dark|at night|in the dark|hide (from|where)|get lost)\b",
     "digging": r"\b(dig\w*|tunnel\w*)\b",
+    "living_things": (
+        r"\b(dogs?|cats?|birds?|animals?|pets?|people|persons?|strangers?|"
+        r"insects?|bugs?|squirrels?)\b"
+    ),
 }
 
 DENY_PATTERNS = {k: re.compile(v, re.I) for k, v in _RAW_DENY.items()}
