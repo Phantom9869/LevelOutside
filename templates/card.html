@@ -214,6 +214,15 @@
     margin-top: 24pt;
     font-style: italic;
   }
+
+  /* Draw box */
+  .draw-box { border: 2pt dashed #1a1a1a; border-radius: 6pt; height: 70mm; margin-top: 24pt; padding: 8pt 10pt; }
+  .draw-label { font-size: 10pt; text-transform: uppercase; letter-spacing: 0.1em; color: #666; }
+  /* Print: let @page margins do the work so the card stays at two pages */
+  @media print {
+    body { background: #fff; }
+    .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+  }
 </style>
 </head>
 <body>
@@ -263,6 +272,8 @@
     <div class="cert-supervision">Completed with a grown-up present — {{ game_title | e }} mission</div>
   </div>
 
+
+  <div class="draw-box"><div class="draw-label">Draw your own game hero here</div></div>
 </div>
 
 </body>

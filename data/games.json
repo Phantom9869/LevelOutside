@@ -11,7 +11,7 @@
     "aliases": ["pokémon", "poke mon", "pocket monsters"],
     "goal": "Explore the world to find hidden things and earn badges on your journey.",
     "verbs": ["explore", "find", "collect", "observe"],
-    "vocabulary": ["journey", "badge", "trainer", "habitat", "power", "level", "victory"]
+    "vocabulary": ["journey", "badge", "power", "level", "victory"]
   },
   {
     "title": "Super Mario",
