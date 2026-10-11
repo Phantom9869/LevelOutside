@@ -214,6 +214,21 @@
     margin-top: 24pt;
     font-style: italic;
   }
+
+  .draw-hero-label {
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .draw-hero-box {
+    border: 1.5pt solid #1a1a1a;
+    height: 240pt;
+  }
+
+  @media print { body { background: #fff; } .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; } }
 </style>
 </head>
 <body>
@@ -262,6 +277,9 @@
     </div>
     <div class="cert-supervision">Completed with a grown-up present — {{ game_title | e }} mission</div>
   </div>
+
+  <div class="draw-hero-label">Draw your own game hero here</div>
+  <div class="draw-hero-box" aria-label="Draw your own game hero here"></div>
 
 </div>
 

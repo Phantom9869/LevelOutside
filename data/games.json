@@ -4,14 +4,14 @@
     "aliases": ["mine craft", "mine-craft"],
     "goal": "Survive and build a shelter by gathering resources from the world around you.",
     "verbs": ["gather", "build", "craft", "explore", "collect"],
-    "vocabulary": ["block", "biome", "resource", "shelter", "crafting", "inventory", "structure"]
+    "vocabulary": ["block", "map", "trail", "shelter", "crafting", "inventory", "structure"]
   },
   {
     "title": "Pokemon",
     "aliases": ["pokémon", "poke mon", "pocket monsters"],
     "goal": "Explore the world to find hidden things and earn badges on your journey.",
     "verbs": ["explore", "find", "collect", "observe"],
-    "vocabulary": ["journey", "badge", "trainer", "habitat", "power", "level", "victory"]
+    "vocabulary": ["badge", "map", "trail", "potion", "token", "level", "victory"]
   },
   {
     "title": "Super Mario",
