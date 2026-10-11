@@ -1,0 +1,12 @@
+{
+  "title": "Minecraft: Nightfall Shelter",
+  "story_hook": "The sun is setting, Explorer! You need to build a shelter before the night mobs arrive. Can you survive the night?",
+  "tasks": [
+    {"mechanic": "Gather Resources", "instruction": "Explorer, gather 5 sticks and 3 stones. Use your hands to pick them up.", "minutes": 5, "objects": ["stick", "stone"]},
+    {"mechanic": "Build a Base", "instruction": "Explorer, use the sticks and stones to build a small block-like base. Make it about 1 foot square.", "minutes": 7, "objects": ["stick", "stone"]},
+    {"mechanic": "Collect Leaves", "instruction": "Explorer, find 3 leaves. Use them to cover part of your block base.", "minutes": 4, "objects": ["leaf"]},
+    {"mechanic": "Mark Your Spot", "instruction": "Explorer, use the chalk to draw a circle around your shelter. Then, use the string to make a line from your shelter to the tree.", "minutes": 4, "objects": ["chalk", "string", "tree"]}
+  ],
+  "finale": "You have built your shelter, Explorer! The night is coming. Observe your creation.",
+  "achievement_name": "Nightfall Survivor"
+}

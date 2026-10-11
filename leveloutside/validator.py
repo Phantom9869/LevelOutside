@@ -85,11 +85,18 @@ def validate_mission(raw, ctx: MissionContext) -> ValidationResult:
 
     # 2. Objects must be confirmed by the parent.
     allowed = ctx.allowed_objects()
+    # Small models often list materials (paper, chalk...) under "objects".
+    # That is harmless, so accept an allowed material there. Anything else
+    # must still be a parent-confirmed object, and the deny-list scan above
+    # has already run over these entries.
+    material_names = {normalize_noun(x) for x in ALLOWED_MATERIALS}
     for i, t in enumerate(m.tasks, 1):
         for obj in t.objects:
-            if normalize_noun(obj) not in allowed:
-                fail("unconfirmed_object",
-                     f"Task {i} uses '{obj}', which the parent did not confirm.")
+            n = normalize_noun(obj)
+            if n in allowed or n in material_names:
+                continue
+            fail("unconfirmed_object",
+                 f"Task {i} uses '{obj}', which the parent did not confirm.")
 
     # 3. Scene nouns mentioned in the text must also be confirmed.
     prose = [m.title, m.story_hook, m.finale] + [t.instruction for t in m.tasks]

@@ -1,0 +1,12 @@
+{"title": "Minecraft: Nightfall Shelter",
+"story_hook": "The sun is setting, Explorer! You need to build a shelter before the night mobs arrive. This is a Minecraft mission!",
+"tasks": [
+    {"mechanic": "Gather Sticks", "instruction": "Explorer, gather 10 sticks from the trees. Use your hands to collect them. This is a resource!", "minutes": 5, "objects": ["stick", "tree"], "materials": []},
+    {"mechanic": "Build a Block Wall", "instruction": "Explorer, use the sticks to build a small wall. Make it at least 3 blocks high. This is a block!", "minutes": 7, "objects": ["stick", "stone"], "materials": []},
+    {"mechanic": "Collect Leaves", "instruction": "Explorer, find 5 leaves from the trees. These are resources. Collect them carefully.", "minutes": 3, "objects": ["leaf", "tree"], "materials": []},
+    {"mechanic": "Mark Your Block", "instruction": "Explorer, use the crayon to draw a line around your block wall. This helps you observe it. It\u2019s like marking a block in Minecraft!", "minutes": 5, "objects": ["crayon"], "materials": ["crayon"]},
+    {"mechanic": "Race to Collect", "instruction": "Explorer, race to collect 3 stones. The fastest one wins! This is a resource.", "minutes": 2, "objects": ["stone"], "materials": []}
+ ],
+ "finale": "You built a shelter, Explorer! Good job!",
+ "achievement_name": "Nightfall Shelter Builder"
+}

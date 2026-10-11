@@ -36,6 +36,19 @@ October 10-11, 2026. Work in progress.
 Ollama must be running locally (`ollama serve`) with the `gemma3:4b` model pulled.
 The safe-fallback button works fully offline.
 
+## Evaluate
+
+Measures how often the local model produces a valid mission on its first try.
+Results are written to `eval/results/` as a CSV plus a markdown summary. Mission
+text is never stored, only counts, failure codes and validator messages.
+
+    .venv\Scripts\python.exe eval\run_eval.py --limit 2    # quick smoke test
+    .venv\Scripts\python.exe eval\run_eval.py              # 15 runs (5 games x 3 age bands)
+    .venv\Scripts\python.exe eval\run_eval.py --model gemma3:4b
+
+If the model gives minutes that do not add up, code rescales them and the run is
+counted separately as "minutes rescaled".
+
 ## Safety note
 
 The deny-list, reading-level limits and age rules are conservative heuristics,

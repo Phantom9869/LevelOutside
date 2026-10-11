@@ -1,0 +1,12 @@
+{
+  "title": "Minecraft Night Survival!",
+  "story_hook": "The sun is setting, Explorer! A dark night is coming. You need to build a shelter and survive until morning. This is a Minecraft challenge!",
+  "tasks": [
+    {"mechanic": "Gather Resources", "instruction": "Explorer, gather 5 sticks and 3 stones. Use your hands to find them near the trees. This is a key resource!", "minutes": 7, "objects": ["stick", "stone"]},
+    {"mechanic": "Build a Simple Block", "instruction": "Now, Explorer, use the stones to build a small block. Make it about 6 inches square. Use your hands to place the stones carefully.", "minutes": 6, "objects": ["stone"]},
+    {"mechanic": "Collect Leaves", "instruction": "Explorer, find 4 leaves. Use them to cover part of your block. This will help protect you from the night.", "minutes": 6, "objects": ["leaf"]},
+    {"mechanic": "Observe the Biome", "instruction": "Explorer, look around. What kind of tree biome are we in? Observe the shapes of the trees and leaves. Use your crayon to draw a picture of what you see.", "minutes": 5, "objects": ["crayon", "paper"]}
+  ],
+  "finale": "You have survived the night, Explorer! You built a shelter and observed the world around you. Great job!",
+  "achievement_name": "Night Shelter Builder"
+}

@@ -37,12 +37,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Try a LevelOutside mission generation")
     parser.add_argument("--verbose", action="store_true",
                         help="Also print the model's raw text for every attempt")
+    parser.add_argument("--model", default=None,
+                        help="Ollama model (default: env LEVELOUTSIDE_MODEL or gemma3:4b)")
     args = parser.parse_args()
 
     raw_outputs: list[str] = []
     original_generate: list = []
 
-    gen = make_generator(PROFILE, CTX.confirmed_objects, CTX)
+    gen = make_generator(PROFILE, CTX.confirmed_objects, CTX, model=args.model)
+    attempt_errors: list[list[str]] = []
+
+    def observer(attempt, result):
+        attempt_errors.append([] if result.ok else list(result.errors))
 
     # Wrap the generator to capture raw outputs when --verbose
     def tracked_generate(feedback: list[str]) -> str:
@@ -52,7 +58,7 @@ def main() -> None:
 
     print("Calling Ollama (this may take up to 5 minutes on first run)…")
     try:
-        result = generate_with_retries(tracked_generate, CTX)
+        result = generate_with_retries(tracked_generate, CTX, observer=observer)
     except RuntimeError as exc:
         print(f"\nERROR: {exc}", file=sys.stderr)
         sys.exit(1)
@@ -69,9 +75,13 @@ def main() -> None:
     print("=" * 60)
     print(f"Attempts:      {result.attempts}")
     print(f"Used fallback: {result.used_fallback}")
+    print(f"Minutes rescaled by code: {result.minutes_adjusted}")
     if result.failure_codes:
         for i, codes in enumerate(result.failure_codes, 1):
             print(f"Attempt {i} failure codes: {codes}")
+        for i, errs in enumerate(attempt_errors, 1):
+            for e in errs:
+                print(f"Attempt {i} error: {e}")
     else:
         print("Failure codes: (none — passed on first attempt)")
 

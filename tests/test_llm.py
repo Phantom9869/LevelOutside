@@ -241,3 +241,32 @@ def test_integration_real_ollama():
     assert result.mission is not None
     # It should be valid (possibly via fallback)
     assert result.mission.title
+
+
+
+# ---- prompt fixes found in a real run ----
+
+class TestPromptFixes:
+    def _prompt(self):
+        from leveloutside.llm import _system_prompt
+        return _system_prompt(PROFILE, CTX.confirmed_objects, CTX)
+
+    def test_materials_never_in_objects_rule(self):
+        p = self._prompt()
+        assert "Never put a material in \"objects\"" in p
+
+    def test_unconfirmed_scene_nouns_listed_as_absent(self):
+        p = self._prompt()
+        assert "wall" in p and "fence" in p      # not confirmed
+        absent_line = [l for l in p.splitlines() if l.startswith("- Do not mention these")][0]
+        assert "tree" not in absent_line and "stick" not in absent_line
+
+    def test_mechanic_must_be_a_listed_verb(self):
+        p = self._prompt()
+        assert "ONE word from: gather, build, craft" in p
+
+    def test_shape_example_minutes_sum_to_duration(self):
+        import re
+        p = self._prompt()
+        mins = [int(m) for m in re.findall(r'"minutes": (\d+)', p)]
+        assert len(mins) == 3 and sum(mins) == CTX.duration_min

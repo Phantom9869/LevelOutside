@@ -6,7 +6,8 @@ from typing import Callable
 
 import httpx
 
-from .safety import AGE_RULES, ALLOWED_MATERIALS
+from .safety import AGE_RULES, ALLOWED_MATERIALS, KNOWN_SCENE_NOUNS
+from .text_utils import normalize_noun
 from .schema import Mission
 from .validator import MissionContext
 
@@ -24,6 +25,28 @@ def _model_name(model: str | None) -> str:
     return os.environ.get("LEVELOUTSIDE_MODEL", _DEFAULT_MODEL)
 
 
+def _shape_example(duration: int) -> str:
+    """A placeholder-only JSON shape (no real content, so nothing to copy)."""
+    base, extra = divmod(duration, 3)
+    mins = [base + (1 if i < extra else 0) for i in range(3)]
+    return (
+        "{\n"
+        '  "title": "<short title>",\n'
+        '  "story_hook": "<one or two short sentences in the game\'s voice>",\n'
+        '  "tasks": [\n'
+        '    {"mechanic": "<one verb>", "instruction": "<one short sentence>", '
+        f'"objects": ["<a confirmed object>"], "materials": [], "minutes": {mins[0]}}},\n'
+        '    {"mechanic": "<one verb>", "instruction": "<one short sentence>", '
+        f'"objects": [], "materials": ["<an allowed material>"], "minutes": {mins[1]}}},\n'
+        '    {"mechanic": "<one verb>", "instruction": "<one short sentence>", '
+        f'"objects": ["<a confirmed object>"], "materials": [], "minutes": {mins[2]}}}\n'
+        "  ],\n"
+        '  "finale": "<one short sentence>",\n'
+        '  "achievement_name": "<short name>"\n'
+        "}"
+    )
+
+
 def _system_prompt(profile: dict, confirmed_objects: set[str], ctx: MissionContext) -> str:
     rules = AGE_RULES[ctx.age_band]
     task_lo, task_hi = rules["tasks"]
@@ -31,10 +54,18 @@ def _system_prompt(profile: dict, confirmed_objects: set[str], ctx: MissionConte
     material_list = ", ".join(sorted(ALLOWED_MATERIALS))
     object_list = ", ".join(sorted(confirmed_objects)) if confirmed_objects else "(none — use ground and sky only)"
 
-    verbs = ", ".join(profile.get("verbs", []))
+    confirmed_norm = {normalize_noun(o) for o in confirmed_objects}
+    absent = ", ".join(sorted(KNOWN_SCENE_NOUNS - confirmed_norm))
+
+    verb_list = profile.get("verbs", [])
+    verbs = ", ".join(verb_list)
     vocab = ", ".join(profile.get("vocabulary", []))
     goal = profile.get("goal", "")
     game_title = profile.get("title", "")
+    mechanic_rule = (
+        f"each task's \"mechanic\" is exactly ONE word from: {verbs}"
+        if verb_list else "each task's \"mechanic\" is exactly ONE plain verb"
+    )
 
     return f"""You are writing an outdoor mission card for a child aged {ctx.age_band} in the style of {game_title}.
 
@@ -44,9 +75,13 @@ GAME VOCABULARY: {vocab}
 
 RULES YOU MUST FOLLOW — no exceptions:
 - Use ONLY these confirmed outdoor objects: {object_list}
+- A task's "objects" list may contain ONLY confirmed objects (it may be empty).
 - Materials must come ONLY from this list: {material_list}
+- A task's "materials" list holds items from the materials list. Never put a material in "objects".
+- Do not mention these things, because they are NOT here: {absent}
 - Number of tasks: between {task_lo} and {task_hi} (inclusive)
-- Task minutes must total exactly {ctx.duration_min}
+- Task minutes must total exactly {ctx.duration_min}; check your sum before answering
+- {mechanic_rule}
 - Flesch-Kincaid reading grade must be {max_grade} or lower; use short sentences and simple words
 - Address the child only as "Explorer"
 - Every task is a physical activity supervised by a grown-up outdoors
@@ -55,7 +90,8 @@ RULES YOU MUST FOLLOW — no exceptions:
 climbing, roofs, ladders, roads, streets, traffic, fire, matches, knives, scissors, hammers, \
 eating, tasting, drinking, digging, or being alone / without a grown-up
 
-OUTPUT: a single JSON object matching the Mission schema. No markdown, no explanation — JSON only."""
+OUTPUT: a single JSON object, JSON only, no markdown and no explanation. Shape example only (write a new mission for {game_title}, do not copy the placeholders):
+{_shape_example(ctx.duration_min)}"""
 
 
 def _build_messages(
