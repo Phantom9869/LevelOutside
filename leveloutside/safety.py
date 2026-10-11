@@ -69,7 +69,8 @@ _RAW_DENY = {
     "digging": r"\b(dig\w*|tunnel\w*)\b",
     "living_things": (
         r"\b(dogs?|cats?|birds?|animals?|pets?|people|persons?|strangers?|"
-        r"insects?|bugs?|squirrels?)\b"
+        r"insects?|bugs?|squirrels?|mobs?|monsters?|zombies?|creepers?|"
+        r"skeletons?|enemy|enemies)\b"
     ),
 }
 

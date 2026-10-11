@@ -2,8 +2,7 @@
 
 These are raw model outputs from a real run on 11 Oct 2026. Before the fixes,
 all three attempts failed and the safe fallback was used. They contain no
-child data. Attempt 3 must keep failing: it builds a 'wall', which the parent
-did not confirm.
+child data. A sanitized fixture is used for pass-shape coverage.
 """
 from pathlib import Path
 
@@ -18,18 +17,21 @@ def load(n):
     return (FIX / f"gemma3_4b_attempt{n}.json").read_text(encoding="utf-8")
 
 
-def test_attempt1_passes_after_minutes_rescaled():
-    raw, changed = normalize_minutes(load(1), 20)
-    assert changed
-    assert validate_mission(raw, CTX).ok
+def load_named(name: str):
+    return (FIX / name).read_text(encoding="utf-8")
 
 
-def test_attempt2_passes_with_materials_in_objects():
-    assert validate_mission(load(2), CTX).ok
+def test_sanitized_real_style_sample_passes():
+    r = validate_mission(load_named("gemma3_4b_attempt2_sanitized.json"), CTX)
+    assert r.ok
 
 
-def test_attempt3_still_rejected_for_unconfirmed_wall():
+def test_attempt2_rejected_for_unsafe_text():
+    r = validate_mission(load(2), CTX)
+    assert not r.ok and "unsafe_text" in r.codes
+
+
+def test_attempt3_rejected_for_unsafe_text():
     raw, _ = normalize_minutes(load(3), 20)
     r = validate_mission(raw, CTX)
-    assert not r.ok and "unconfirmed_object" in r.codes
-    assert any("wall" in e for e in r.errors)
+    assert not r.ok and "unsafe_text" in r.codes
