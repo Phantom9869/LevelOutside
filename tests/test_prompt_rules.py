@@ -20,10 +20,11 @@ def test_prompt_forbids_building_words():
     assert 'Never write the words "building" or "buildings"; use "build" or "make" instead.' in prompt
 
 
-def test_lego_prompt_calls_the_game_lego():
+def test_lego_prompt_does_not_name_the_game_in_mission_text():
     profile = get_profile("Lego Building")
     prompt = _system_prompt(profile, CONFIRMED_OBJECTS, _ctx("8-10"))
-    assert 'Use the game name "Lego" in mission text.' in prompt
+    assert "Never write the game's title or name in any mission field" in prompt
+    assert "Use the game name" not in prompt
 
 
 def test_5_7_prompt_has_six_word_rule_only_for_5_7_band():

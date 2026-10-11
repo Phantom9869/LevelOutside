@@ -62,7 +62,6 @@ def _system_prompt(profile: dict, confirmed_objects: set[str], ctx: MissionConte
     vocab = ", ".join(profile.get("vocabulary", []))
     goal = profile.get("goal", "")
     game_title = profile.get("title", "")
-    mission_game_name = "Lego" if "building" in game_title.lower() else game_title
     age_writing_rules = {
         "5-7": (
             "For ages 5-7: sentences of at most 6 words, one idea per sentence, "
@@ -99,7 +98,8 @@ RULES YOU MUST FOLLOW — no exceptions:
 - No screens, no devices
 - Never mention monsters, mobs, creatures, enemies, or any living thing, even if the game normally has them.
 - Never write the words "building" or "buildings"; use "build" or "make" instead.
-- Use the game name "{mission_game_name}" in mission text.
+- Never write the game's title or name in any mission field (title, story_hook, tasks, finale, achievement_name); say "your game" instead. The title is printed separately on the card.
+- Never mention food, eating, mushrooms, berries, or any plant to taste or pick, even if the game has them.
 - {age_writing_rules[ctx.age_band]}
 - NEVER mention: animals, dogs, cats, birds, pets, people, strangers, water, swimming, \
 climbing, roofs, ladders, roads, streets, traffic, fire, matches, knives, scissors, hammers, \
