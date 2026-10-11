@@ -91,13 +91,8 @@ RULES YOU MUST FOLLOW — no exceptions:
 - Describe objects as fallen or lying on the ground (for example: "fallen leaves" and "sticks from the ground"). Never ask the child to pick anything off living plants.
 - Do not mention these things, because they are NOT here: {absent}
 - Number of tasks: between {task_lo} and {task_hi} (inclusive)
-- Write exactly three tasks.
 - Task minutes must total exactly {ctx.duration_min}; check your sum before answering
 - {mechanic_rule}
-- The three tasks must use three different mechanics.
-- At least one task must tie one game vocabulary word to one confirmed real object (example: a round stone called a "poke ball").
-- For age band 5-7, the vocabulary word used in that tie must be at most two syllables.
-- Every task must include a stopping point (for example, a number or place) and must never say "as many as you can".
 - Flesch-Kincaid reading grade must be {max_grade} or lower; use short sentences and simple words
 - Address the child only as "Explorer"
 - Every task is a physical activity supervised by a grown-up outdoors
@@ -188,8 +183,6 @@ def make_generator(
             try:
                 return _chat(client, resolved_model, messages, schema)
             except RuntimeError as exc:
-                # If Ollama rejected the structured schema, fall back to format="json"
-                # with the schema embedded in the prompt text.
                 if "schema" in str(exc).lower() or "format" in str(exc).lower() or "400" in str(exc):
                     schema = "json"
                     messages = _build_messages(system, feedback, schema_in_prompt=True)
