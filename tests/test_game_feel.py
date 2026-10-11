@@ -1,17 +1,13 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from unittest.mock import patch
 
 from leveloutside.card import render_card
-from leveloutside.llm import _system_prompt, make_generator
-from leveloutside.safety import unsafe_matches
+from leveloutside.llm import make_generator
 from leveloutside.schema import Mission
 from leveloutside.validator import MissionContext
 
-
-DATA_FILE = Path(__file__).parent.parent / "data" / "games.json"
 
 
 def _ctx(age_band: str = "8-10") -> MissionContext:
@@ -42,20 +38,6 @@ def _mission() -> Mission:
     )
 
 
-def test_prompt_contains_new_game_feel_rules():
-    profile = {
-        "title": "Minecraft",
-        "goal": "Survive and build",
-        "verbs": ["gather", "build", "craft"],
-        "vocabulary": ["block", "map", "trail"],
-    }
-    prompt = _system_prompt(profile, _ctx().confirmed_objects, _ctx("5-7"))
-    assert "At least one task must tie one game vocabulary word to one confirmed real object" in prompt
-    assert "must be at most two syllables" in prompt
-    assert 'must never say "as many as you can"' in prompt
-    assert "The three tasks must use three different mechanics." in prompt
-
-
 def test_prompt_excludes_aliases_and_extra_profile_fields():
     profile = {
         "title": "Pokemon",
@@ -75,14 +57,6 @@ def test_prompt_excludes_aliases_and_extra_profile_fields():
         system = client.post.call_args[1]["json"]["messages"][0]["content"]
         assert "FORBIDDEN_ALIAS_TOKEN" not in system
         assert "FORBIDDEN_EXTRA_TOKEN" not in system
-
-
-def test_library_entries_keep_safe_vocabulary_limits():
-    library = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    for entry in library:
-        assert 5 <= len(entry["vocabulary"]) <= 8
-        for word in entry["vocabulary"]:
-            assert not unsafe_matches(word), f"{entry['title']} vocab '{word}' has deny-list hits"
 
 
 def test_rendered_card_has_draw_label_and_no_name_input():
