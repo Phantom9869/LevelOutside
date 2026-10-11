@@ -1,0 +1,16 @@
+timestamp,model,game,age_band,first_try_pass,attempts,used_fallback,failure_codes,failure_errors,latency_seconds
+2026-10-11T20:01:07,gemma3:4b,Minecraft,5-7,True,1,False,[],[[]],32.82
+2026-10-11T20:01:32,gemma3:4b,Minecraft,8-10,True,1,False,[],[[]],25.09
+2026-10-11T20:02:01,gemma3:4b,Minecraft,11-13,True,1,False,[],[[]],29.88
+2026-10-11T20:02:55,gemma3:4b,Pokemon,5-7,False,2,False,"[[""reading_level""]]","[[""Reading level is too high (3.3 vs max 3.0). Use shorter sentences and simpler words.""], []]",53.04
+2026-10-11T20:03:29,gemma3:4b,Pokemon,8-10,True,1,False,[],[[]],34.62
+2026-10-11T20:04:01,gemma3:4b,Pokemon,11-13,True,1,False,[],[[]],31.40
+2026-10-11T20:04:30,gemma3:4b,Super Mario,5-7,True,1,False,[],[[]],29.04
+2026-10-11T20:05:25,gemma3:4b,Super Mario,8-10,False,2,False,"[[""unconfirmed_object""]]","[[""The text mentions 'path', which is not in the confirmed list.""], []]",55.51
+2026-10-11T20:06:00,gemma3:4b,Super Mario,11-13,True,1,False,[],[[]],35.08
+2026-10-11T20:06:27,gemma3:4b,Lego Building,5-7,True,1,False,[],[[]],27.15
+2026-10-11T20:06:58,gemma3:4b,Lego Building,8-10,True,1,False,[],[[]],30.95
+2026-10-11T20:07:28,gemma3:4b,Lego Building,11-13,True,1,False,[],[[]],29.42
+2026-10-11T20:08:49,gemma3:4b,Animal Crossing,5-7,False,3,True,"[[""reading_level""], [""reading_level""], [""reading_level""]]","[[""Reading level is too high (5.3 vs max 3.0). Use shorter sentences and simpler words.""], [""Reading level is too high (3.6 vs max 3.0). Use shorter sentences and simpler words.""], [""Reading level is too high (4.5 vs max 3.0). Use shorter sentences and simpler words.""]]",81.33
+2026-10-11T20:09:19,gemma3:4b,Animal Crossing,8-10,True,1,False,[],[[]],30.03
+2026-10-11T20:09:53,gemma3:4b,Animal Crossing,11-13,True,1,False,[],[[]],33.43
