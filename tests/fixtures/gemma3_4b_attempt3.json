@@ -1,5 +1,5 @@
 {"title": "Minecraft: Nightfall Shelter",
-"story_hook": "The sun is setting, Explorer! You need to build a shelter before nightfall. This is a Minecraft mission!",
+"story_hook": "The sun is setting, Explorer! You need to build a shelter before the night mobs arrive. This is a Minecraft mission!",
 "tasks": [
     {"mechanic": "Gather Sticks", "instruction": "Explorer, gather 10 sticks from the trees. Use your hands to collect them. This is a resource!", "minutes": 5, "objects": ["stick", "tree"], "materials": []},
     {"mechanic": "Build a Block Wall", "instruction": "Explorer, use the sticks to build a small wall. Make it at least 3 blocks high. This is a block!", "minutes": 7, "objects": ["stick", "stone"], "materials": []},
