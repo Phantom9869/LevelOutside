@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Minecraft",
+    "aliases": ["mine craft", "mine-craft"],
+    "goal": "Survive and build a shelter by gathering resources from the world around you.",
+    "verbs": ["gather", "build", "craft", "explore", "collect"],
+    "vocabulary": ["block", "biome", "resource", "shelter", "crafting", "inventory", "structure"]
+  },
+  {
+    "title": "Pokemon",
+    "aliases": ["pokémon", "poke mon", "pocket monsters"],
+    "goal": "Explore the world to find hidden things and earn badges on your journey.",
+    "verbs": ["explore", "find", "collect", "observe"],
+    "vocabulary": ["journey", "badge", "trainer", "habitat", "power", "level", "victory"]
+  },
+  {
+    "title": "Super Mario",
+    "aliases": ["mario", "mario bros", "mario brothers", "super mario bros"],
+    "goal": "Race through a colourful world collecting stars and reaching the flag.",
+    "verbs": ["explore", "find", "race", "collect"],
+    "vocabulary": ["kingdom", "coin", "flag", "star", "world", "level", "checkpoint"]
+  },
+  {
+    "title": "Roblox Obstacle Courses",
+    "aliases": ["roblox", "roblox obby", "obby"],
+    "goal": "Race through tricky obstacle courses and reach the finish as fast as you can.",
+    "verbs": ["race", "find", "explore", "collect"],
+    "vocabulary": ["obstacle", "checkpoint", "finish", "platform", "speed", "tower"]
+  },
+  {
+    "title": "Animal Crossing",
+    "aliases": ["acnh", "crossing"],
+    "goal": "Gather and craft things to decorate your island and enjoy every season.",
+    "verbs": ["gather", "collect", "find", "observe", "craft"],
+    "vocabulary": ["island", "season", "fossil", "shell", "nature", "decoration", "craft"]
+  },
+  {
+    "title": "Lego Building",
+    "aliases": ["lego", "legos"],
+    "goal": "Build amazing structures from simple pieces using your imagination.",
+    "verbs": ["build", "collect", "craft", "find"],
+    "vocabulary": ["brick", "structure", "base", "design", "piece", "module", "creation"]
+  },
+  {
+    "title": "Sonic",
+    "aliases": ["sonic the hedgehog", "sonic hedgehog"],
+    "goal": "Race at top speed through zones to collect rings and reach the goal.",
+    "verbs": ["race", "explore", "find", "collect"],
+    "vocabulary": ["ring", "speed", "zone", "dash", "path", "loop", "boost"]
+  },
+  {
+    "title": "Mario Kart",
+    "aliases": ["mariokart", "mario cart", "mk"],
+    "goal": "Race around tracks, collect power-ups, and reach the finish line first.",
+    "verbs": ["race", "collect", "find", "observe"],
+    "vocabulary": ["track", "lap", "finish", "speed", "course", "boost", "trophy"]
+  },
+  {
+    "title": "Kirby",
+    "aliases": ["kirby star allies", "kirby and the forgotten land"],
+    "goal": "Explore colourful worlds, collect stars, and find hidden treasures.",
+    "verbs": ["explore", "collect", "find", "observe"],
+    "vocabulary": ["power", "star", "level", "zone", "ability", "treasure"]
+  },
+  {
+    "title": "Stardew Valley",
+    "aliases": ["stardew", "stardew-valley"],
+    "goal": "Gather crops and craft useful things to grow your farm through the seasons.",
+    "verbs": ["gather", "craft", "find", "build", "collect"],
+    "vocabulary": ["season", "crop", "harvest", "field", "seed", "barn", "recipe"]
+  }
+]
