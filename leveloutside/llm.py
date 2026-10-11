@@ -75,9 +75,11 @@ GAME VOCABULARY: {vocab}
 
 RULES YOU MUST FOLLOW — no exceptions:
 - Use ONLY these confirmed outdoor objects: {object_list}
+- Name no scene objects outside the confirmed list.
 - A task's "objects" list may contain ONLY confirmed objects (it may be empty).
 - Materials must come ONLY from this list: {material_list}
 - A task's "materials" list holds items from the materials list. Never put a material in "objects".
+- Describe objects as fallen or lying on the ground (for example: "fallen leaves" and "sticks from the ground"). Never ask the child to pick anything off living plants.
 - Do not mention these things, because they are NOT here: {absent}
 - Number of tasks: between {task_lo} and {task_hi} (inclusive)
 - Task minutes must total exactly {ctx.duration_min}; check your sum before answering
@@ -86,6 +88,7 @@ RULES YOU MUST FOLLOW — no exceptions:
 - Address the child only as "Explorer"
 - Every task is a physical activity supervised by a grown-up outdoors
 - No screens, no devices
+- Never mention monsters, mobs, creatures, enemies, or any living thing, even if the game normally has them.
 - NEVER mention: animals, dogs, cats, birds, pets, people, strangers, water, swimming, \
 climbing, roofs, ladders, roads, streets, traffic, fire, matches, knives, scissors, hammers, \
 eating, tasting, drinking, digging, or being alone / without a grown-up
