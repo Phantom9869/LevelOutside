@@ -1,0 +1,16 @@
+timestamp,model,game,age_band,first_try_pass,attempts,used_fallback,failure_codes,failure_errors,latency_seconds
+2026-10-11T19:43:17,gemma3:4b,Minecraft,5-7,True,1,False,[],[[]],35.63
+2026-10-11T19:43:43,gemma3:4b,Minecraft,8-10,True,1,False,[],[[]],25.93
+2026-10-11T19:44:08,gemma3:4b,Minecraft,11-13,True,1,False,[],[[]],25.10
+2026-10-11T19:45:17,gemma3:4b,Pokemon,5-7,False,3,False,"[[""reading_level""], [""reading_level""]]","[[""Reading level is too high (4.3 vs max 3.0). Use shorter sentences and simpler words.""], [""Reading level is too high (3.3 vs max 3.0). Use shorter sentences and simpler words.""], []]",69.47
+2026-10-11T19:45:46,gemma3:4b,Pokemon,8-10,True,1,False,[],[[]],28.24
+2026-10-11T19:46:15,gemma3:4b,Pokemon,11-13,True,1,False,[],[[]],29.69
+2026-10-11T19:46:46,gemma3:4b,Super Mario,5-7,True,1,False,[],[[]],30.86
+2026-10-11T19:47:17,gemma3:4b,Super Mario,8-10,True,1,False,[],[[]],31.25
+2026-10-11T19:47:51,gemma3:4b,Super Mario,11-13,True,1,False,[],[[]],33.38
+2026-10-11T19:48:18,gemma3:4b,Lego Building,5-7,True,1,False,[],[[]],26.88
+2026-10-11T19:48:50,gemma3:4b,Lego Building,8-10,True,1,False,[],[[]],32.06
+2026-10-11T19:49:22,gemma3:4b,Lego Building,11-13,True,1,False,[],[[]],32.55
+2026-10-11T19:50:15,gemma3:4b,Animal Crossing,5-7,False,2,False,"[[""reading_level""]]","[[""Reading level is too high (4.9 vs max 3.0). Use shorter sentences and simpler words.""], []]",52.96
+2026-10-11T19:50:45,gemma3:4b,Animal Crossing,8-10,True,1,False,[],[[]],29.44
+2026-10-11T19:51:12,gemma3:4b,Animal Crossing,11-13,True,1,False,[],[[]],27.19
