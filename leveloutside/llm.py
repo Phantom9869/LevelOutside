@@ -62,6 +62,15 @@ def _system_prompt(profile: dict, confirmed_objects: set[str], ctx: MissionConte
     vocab = ", ".join(profile.get("vocabulary", []))
     goal = profile.get("goal", "")
     game_title = profile.get("title", "")
+    mission_game_name = "Lego" if "building" in game_title.lower() else game_title
+    age_writing_rules = {
+        "5-7": (
+            "For ages 5-7: sentences of at most 6 words, one idea per sentence, "
+            "short common words of one or two syllables, and no game jargon beyond the profile vocabulary."
+        ),
+        "8-10": "For ages 8-10: sentences of at most 12 words, with simple words.",
+        "11-13": "For ages 11-13: sentences of at most 15 words.",
+    }
     mechanic_rule = (
         f"each task's \"mechanic\" is exactly ONE word from: {verbs}"
         if verb_list else "each task's \"mechanic\" is exactly ONE plain verb"
@@ -89,6 +98,9 @@ RULES YOU MUST FOLLOW — no exceptions:
 - Every task is a physical activity supervised by a grown-up outdoors
 - No screens, no devices
 - Never mention monsters, mobs, creatures, enemies, or any living thing, even if the game normally has them.
+- Never write the words "building" or "buildings"; use "build" or "make" instead.
+- Use the game name "{mission_game_name}" in mission text.
+- {age_writing_rules[ctx.age_band]}
 - NEVER mention: animals, dogs, cats, birds, pets, people, strangers, water, swimming, \
 climbing, roofs, ladders, roads, streets, traffic, fire, matches, knives, scissors, hammers, \
 eating, tasting, drinking, digging, or being alone / without a grown-up
