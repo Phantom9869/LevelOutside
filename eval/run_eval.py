@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import os
 import sys
 import time
@@ -117,9 +118,14 @@ def run_sweep(
 
         gen = make_generator(profile, DEFAULT_OBJECTS, ctx, model=model)
 
+        attempt_errors = []
+
+        def observer(attempt, res):
+            attempt_errors.append([] if res.ok else list(res.errors))
+
         start = time.time()
         try:
-            result = generate_with_retries(gen, ctx)
+            result = generate_with_retries(gen, ctx, observer=observer)
             latency = time.time() - start
         except Exception as exc:  # Ollama down, etc.
             latency = time.time() - start
@@ -136,8 +142,8 @@ def run_sweep(
                     False,  # first_try_pass
                     0,  # attempts
                     True,  # used_fallback (fallback path)
-                    [[]],  # failure_codes
-                    [[str(exc)]],  # failure_errors
+                    json.dumps([[]]),  # failure_codes
+                    json.dumps([[str(exc)]]),  # failure_errors
                     f"{latency:.2f}",
                 ]
             )
@@ -155,7 +161,7 @@ def run_sweep(
                 result.attempts,
                 str(result.used_fallback),
                 json.dumps(result.failure_codes),
-                json.dumps(result.failure_errors),
+                json.dumps(attempt_errors),
                 f"{latency:.2f}",
             ]
         )
