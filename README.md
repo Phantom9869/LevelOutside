@@ -29,6 +29,13 @@ October 10-11, 2026. Work in progress.
     pip install -r requirements.txt
     pytest -q
 
+## Run the app
+
+    .venv\Scripts\python.exe -m streamlit run app.py
+
+Ollama must be running locally (`ollama serve`) with the `gemma3:4b` model pulled.
+The safe-fallback button works fully offline.
+
 ## Safety note
 
 The deny-list, reading-level limits and age rules are conservative heuristics,
